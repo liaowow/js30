@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log('Heyyy')
+
+    // Interpolated
+    console.log('Holy %s string!', '💩')
+
+    // Styled
+    console.log('%c Styling me pretty', 'font-size: 50px; background: #BADA55;')
+
+    // warning!
+    console.warn('Noooooo')
+
+    // Error :|
+    console.error('not right')
+
+    // Info
+    console.info('what up')
+
+    // Testing
+    const p = document.querySelector('p')
+    console.assert(p.classList.contains('maybe'), 'you selected a wrong element')
+
+    // clearing
+    console.clear()
+
+    // Viewing DOM Elements
+    console.dir(p)
+
+    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`)
+      console.log(`This is ${dog.name}`)
+      console.log(`${dog.name} is ${dog.age} years old`)
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`)
+      console.groupEnd(`${dog.name}`)
+    })
+    // counting
+    console.count('covid')
+    console.count('covid')
+    console.count('covid')
+    console.count('covid')
+    console.count('corona')
+    console.count('corona')
+
+    // timing
+    console.time('data fetch time')
+    fetch('https://api.github.com/users/liaowow')
+    .then(data => data.json())
+    .then(data => {
+      console.timeEnd('data fetch time')
+      console.log(data)
+    })
+
+  </script>
+</body>
+</html>
