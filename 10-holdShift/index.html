@@ -97,24 +97,48 @@
 
 <script>
   const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]')
+  /* alternate approach (reference: https://github.com/soyaine/JavaScript30/blob/master/10%20-%20Hold%20Shift%20and%20Check%20Checkboxes/README.md) */
+  const checkboxesArr = Array.from(checkboxes)
   let lastChecked;
+  let checkState = false
   function handleCheck(e) {
-    let inBetween = false
-    // check if there's a 'shift' keydown AND the checkbox is checked
-    if (e.shiftKey && this.checked) {
-      checkboxes.forEach((checkbox, idx) => {
-        if (checkbox === this || checkbox === lastChecked) {
-          inBetween = !inBetween
-        }
+    if (!lastChecked) lastChecked = this
 
-        if (inBetween) {
-          checkbox.checked = true
-        }
-      })
+    checkState = lastChecked.checked ? true : false
+
+    console.log('%c lastChecked before shiftKey: ', 'color: black; background: #BADA55;',lastChecked)
+    if (e.shiftKey) {
+      console.log('%c lastChecked inside shiftKey: ', 'color: black; background: #ffc600;', lastChecked)
+      let currSelectedIdx = checkboxesArr.indexOf(this)
+      let prevSelectedIdx = checkboxesArr.indexOf(lastChecked)
+
+      checkboxesArr
+        .slice(Math.min(currSelectedIdx, prevSelectedIdx), Math.max(currSelectedIdx, prevSelectedIdx) + 1)
+        .forEach(input => input.checked = checkState)
     }
-    lastChecked = this
-  }
 
+    lastChecked = this
+    console.log('%c lastChecked after shiftKey: ', 'color: black; background: cornflowerblue;', lastChecked)
+  }
+  
+  /* wes bos approach */
+  // let lastChecked;
+  // function handleCheck(e) {
+  //   let inBetween = false
+  //   // check if there's a 'shift' keydown AND the checkbox is checked
+  //   if (e.shiftKey && this.checked) {
+  //     checkboxes.forEach((checkbox, idx) => {
+  //       if (checkbox === this || checkbox === lastChecked) {
+  //         inBetween = !inBetween
+  //       }
+
+  //       if (inBetween) {
+  //         checkbox.checked = true
+  //       }
+  //     })
+  //   }
+  //   lastChecked = this
+  // }
   checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
 
 </script>
