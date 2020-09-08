@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+  /* TFrommen approach */
+  const konamiCode = [
+    'ArrowUp',
+		'ArrowUp',
+		'ArrowDown',
+		'ArrowDown',
+		'ArrowLeft',
+		'ArrowRight',
+		'ArrowLeft',
+		'ArrowRight',
+		'b',
+		'a'
+  ]
+  let userInput = new Array(konamiCode.length)
+
+  window.addEventListener('keydown', ({ key }) => {
+    userInput = [...userInput.slice(1), key]
+    console.log(userInput)
+
+    if (konamiCode.every((val, idx) => val === userInput[idx])) {
+      console.log('Tada!')
+      cornify_add()
+    }
+  })
+
+  /* Wes Bos approach 
+  (explainer: https://github.com/guahsu/JavaScript30/tree/master/12_Key-Sequence-Detection) 
+  */
+  // const pressedKeys = []
+  // const secretCode = 'jackpot'
+  // window.addEventListener('keyup', (e) => {
+  //   pressedKeys.push(e.key)
+  //   pressedKeys.splice(-secretCode.length - 1, pressedKeys.length - secretCode.length)
+
+  //   if (pressedKeys.join('').includes(secretCode)) {
+  //     console.log('YOU GOT IT!')
+  //     cornify_add()
+  //   }
+  // })
+</script>
+</body>
+</html>
