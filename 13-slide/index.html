@@ -59,9 +59,11 @@
     }
 
     const sliderImages = document.querySelectorAll('.slide-in')
-
+    /* 
+    Check out lazy-load version of checkSlide function:
+    https://github.com/guahsu/JavaScript30/tree/master/13_Slide-in-on-Scroll
+    */
     function checkSlide(e) {
-      // console.log(window.scrollY)
       sliderImages.forEach(image => {
         // half way through the image
         const slideInAt = (window.scrollY + window.innerHeight) - (image.height / 2)
