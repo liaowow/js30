@@ -76,7 +76,9 @@ function greenScreen(pixels) {
   const levels = {}
 
   document.querySelectorAll('.rgb input')
-    .forEach(input => levels[input.name] = input.value)
+    .forEach(input => {
+      levels[input.name] = input.value
+    })
   
   for (let i = 0; i < pixels.data.length; i+=4) {
     red = pixels.data[i + 0];
